@@ -6,19 +6,19 @@
 /*   By: yaidriss <yaidriss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 00:15:31 by yaidriss          #+#    #+#             */
-/*   Updated: 2022/10/12 19:32:18 by yaidriss         ###   ########.fr       */
+/*   Updated: 2022/10/12 22:53:36 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	handl(char c,)
+int	handl(va_list args, unsigned char c)
 {
 	int	lenght;
 
 	lenght = 0;
 	if (c == 'c')
-		lenght += ft_printf_char(va_arg(args, char));
+		lenght += ft_printf_char((char )va_arg(args, int));
 	else if (c == 's')
 		lenght += ft_printf_str(va_arg(args, char *));
 	else if (c == 'd' || c == 'i')
@@ -51,10 +51,10 @@ int	ft_printf(const char *str, ...)
 	while (str[++i])
 	{
 		if (str[i] == '%')
-			lengh += handl(str[i + 1]);
+			lengh += handl(args, str[++i]);
 		else
 			lengh += ft_printf_char(str[i]);
 	}
-	end_list(args);
+	va_end(args);
 	return (lengh);
 }
