@@ -6,7 +6,7 @@
 /*   By: yaidriss <yaidriss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 17:52:04 by yaidriss          #+#    #+#             */
-/*   Updated: 2022/10/12 22:26:10 by yaidriss         ###   ########.fr       */
+/*   Updated: 2022/10/12 23:34:06 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ int	ft_printf_str(char *s)
 
 	lengh = 0;
 	i = 0;
-	while (s[i])
-		lengh += ft_printf_char(s[i++]);
+	if (!s)
+		lengh += ft_printf_str("(null)");
+	else
+		while (s[i])
+			lengh += ft_printf_char(s[i++]);
 	return (lengh);
 }
